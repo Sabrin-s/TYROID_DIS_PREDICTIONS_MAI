@@ -19,18 +19,6 @@ by combining:
 
 ---
 
-## 👩‍💻 Team Members
-
-| Name | Register No |
-|------|------------|
-| Sabrin S | 6113221031129 |
-| Sandhiya S | 6113221031131 |
-| Sowmiya B | 6113221031154 |
-| Padma Rekha T | 6113221033810 |
-
-**Guide:** Ms. N. Karthigavani, M.E., Assistant Professor, CSE
-
----
 
 ## ✨ Features
 
