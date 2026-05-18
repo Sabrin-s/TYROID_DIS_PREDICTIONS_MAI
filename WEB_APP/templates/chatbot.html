@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - ThyroidCare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        #chat-box {
+            height: 450px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        .user-bubble {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+        }
+        .bot-bubble {
+            background: #f1f5f9;
+            color: #1e293b;
+            border-radius: 18px 18px 18px 4px;
+        }
+        .typing-dot {
+            width: 8px; height: 8px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: bounce 1.2s infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                    ThyroidCare
+                </span>
+                <div class="flex items-center space-x-4">
+                    <a href="{{ url_for('index') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">🏠 Home</a>
+                    <a href="{{ url_for('patient_history') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">📋 My History</a>
+                    <a href="{{ url_for('consultation') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">🏥 Consultation</a>
+                    <a href="{{ url_for('logout') }}" class="text-gray-600 hover:text-red-600 transition-colors duration-300">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-3xl mx-auto px-4 py-10 animate__animated animate__fadeIn">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">🤖 AI Thyroid Assistant</h1>
+            <p class="text-gray-500 mt-1">Ask me anything about thyroid conditions, symptoms, or treatments</p>
+        </div>
+
+        <!-- Chat Box -->
+        <div class="bg-white rounded-2xl shadow-xl p-6">
+            <div id="chat-box" class="space-y-4 mb-4">
+                <!-- Welcome message -->
+                <div class="flex items-start space-x-3">
+                    <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold flex-shrink-0">AI</div>
+                    <div class="bot-bubble px-4 py-3 max-w-lg text-sm shadow-sm">
+                        Hello! 👋 I'm your ThyroidCare AI Assistant. I can help you with questions about thyroid diseases, symptoms, treatments, and lifestyle tips. How can I help you today?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div id="typing-indicator" class="hidden flex items-center space-x-2 mb-4">
+                <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold flex-shrink-0">AI</div>
+                <div class="bot-bubble px-4 py-3 flex space-x-1">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="flex space-x-3 mt-2">
+                <input 
+                    type="text" 
+                    id="user-input"
+                    placeholder="Type your question here..."
+                    class="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    onkeypress="if(event.key==='Enter') sendMessage()"
+                />
+                <button 
+                    onclick="sendMessage()"
+                    class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium text-sm"
+                >
+                    Send 🚀
+                </button>
+            </div>
+
+            <!-- Quick Questions -->
+            <div class="mt-4">
+                <p class="text-xs text-gray-400 mb-2">Quick Questions:</p>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="quickAsk('What are symptoms of hypothyroidism?')" class="text-xs px-3 py-1 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition">Hypothyroidism symptoms</button>
+                    <button onclick="quickAsk('What foods are good for thyroid health?')" class="text-xs px-3 py-1 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition">Thyroid diet</button>
+                    <button onclick="quickAsk('What is TSH test?')" class="text-xs px-3 py-1 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition">TSH test</button>
+                    <button onclick="quickAsk('Difference between hypothyroidism and hyperthyroidism?')" class="text-xs px-3 py-1 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition">Hypo vs Hyper</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-xs text-gray-400 mt-4">⚠️ This AI assistant is for informational purposes only. Always consult a real doctor.</p>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            appendMessage('user', message);
+            input.value = '';
+            showTyping(true);
+
+            fetch('/chatbot/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showTyping(false);
+                appendMessage('bot', data.reply);
+            })
+            .catch(() => {
+                showTyping(false);
+                appendMessage('bot', '❌ Sorry, something went wrong. Please try again.');
+            });
+        }
+
+        function quickAsk(question) {
+            document.getElementById('user-input').value = question;
+            sendMessage();
+        }
+
+        function appendMessage(sender, text) {
+            const chatBox = document.getElementById('chat-box');
+            const div = document.createElement('div');
+            div.className = 'flex items-start space-x-3' + (sender === 'user' ? ' justify-end' : '');
+
+            if (sender === 'bot') {
+                div.innerHTML = `
+                    <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold flex-shrink-0">AI</div>
+                    <div class="bot-bubble px-4 py-3 max-w-lg text-sm shadow-sm">${text}</div>`;
+            } else {
+                div.innerHTML = `
+                    <div class="user-bubble px-4 py-3 max-w-lg text-sm shadow-sm">${text}</div>
+                    <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0">Me</div>`;
+            }
+
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function showTyping(show) {
+            document.getElementById('typing-indicator').classList.toggle('hidden', !show);
+            const chatBox = document.getElementById('chat-box');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

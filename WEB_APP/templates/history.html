@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My History - ThyroidCare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                    ThyroidCare
+                </span>
+                <div class="flex items-center space-x-4">
+                    <a href="{{ url_for('index') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">🏠 Home</a>
+                    <a href="{{ url_for('chatbot') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">🤖 AI Chatbot</a>
+                    <a href="{{ url_for('consultation') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">🏥 Consultation</a>
+                    <a href="{{ url_for('logout') }}" class="text-gray-600 hover:text-red-600 transition-colors duration-300">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto px-4 py-10 animate__animated animate__fadeIn">
+
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">📋 My Diagnosis History</h1>
+            <p class="text-gray-500 mt-1">All your past thyroid diagnosis records — {{ username }}</p>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="mb-4 px-4 py-3 bg-green-100 text-green-800 rounded-xl text-sm text-center">
+                    ✅ {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if history %}
+        <!-- History Cards -->
+        <div class="space-y-6">
+            {% for record in history %}
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="text-xs text-gray-400">📅 {{ record.date }}</span>
+                        <h2 class="text-lg font-semibold text-gray-800 mt-1">Diagnosis #{{ loop.index }}</h2>
+                    </div>
+                    <form action="{{ url_for('delete_history', index=loop.index0) }}" method="POST"
+                          onsubmit="return confirm('Delete this record?')">
+                        <button type="submit"
+                                class="text-xs px-3 py-1 bg-red-50 text-red-500 rounded-full hover:bg-red-100 transition">
+                            🗑 Delete
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Symptoms -->
+                <div class="bg-gray-50 rounded-xl p-4 mb-4">
+                    <p class="text-xs font-medium text-gray-500 mb-1">Symptoms Described:</p>
+                    <p class="text-sm text-gray-700">{{ record.symptoms }}</p>
+                </div>
+
+                <!-- Predictions -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 rounded-xl p-4 text-center">
+                        <p class="text-xs text-blue-500 font-medium mb-1">📝 Text Prediction</p>
+                        <p class="text-sm font-bold text-blue-700">{{ record.prediction_text }}</p>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-4 text-center">
+                        <p class="text-xs text-green-500 font-medium mb-1">🖼 Image Prediction</p>
+                        <p class="text-sm font-bold text-green-700">{{ record.prediction_image }}</p>
+                    </div>
+                    <div class="bg-purple-50 rounded-xl p-4 text-center">
+                        <p class="text-xs text-purple-500 font-medium mb-1">🔬 Combined Prediction</p>
+                        <p class="text-sm font-bold text-purple-700">{{ record.prediction_both }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <!-- No History -->
+        <div class="text-center py-20">
+            <div class="text-6xl mb-4">📭</div>
+            <h2 class="text-xl font-semibold text-gray-600 mb-2">No diagnosis records yet</h2>
+            <p class="text-gray-400 mb-6">Your diagnosis history will appear here after you get your first analysis.</p>
+            <a href="{{ url_for('index') }}"
+               class="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-300 inline-flex items-center">
+                🩺 Start Diagnosis
+            </a>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

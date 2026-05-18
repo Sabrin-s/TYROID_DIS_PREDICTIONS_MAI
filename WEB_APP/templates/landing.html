@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Disease Diagnosis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50">
+    <div class="min-h-screen flex flex-col">
+        <!-- Navigation -->
+        <nav class="bg-white/80 backdrop-blur-md fixed w-full z-50 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-20">
+                    <div class="flex items-center">
+                        <span class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent animate__animated animate__fadeIn">ThyroidCare</span>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <a href="{{ url_for('login') }}" class="px-6 py-2.5 text-blue-600 hover:text-blue-800 transition-colors duration-300">Login</a>
+                        <a href="{{ url_for('register') }}" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-blue-200">Register</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <main class="flex-grow pt-20">
+            <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                    <div class="mb-12 lg:mb-0" data-aos="fade-right">
+                        <h1 class="text-5xl font-extrabold text-gray-900 sm:text-6xl leading-tight animate__animated animate__fadeInUp">
+                            Smart Thyroid
+                            <span class="block text-blue-600">Disease Detection</span>
+                        </h1>
+                        <p class="mt-6 text-xl text-gray-600 animate__animated animate__fadeInUp animate__delay-1s">
+                            Leveraging advanced AI technology for precise thyroid diagnosis through comprehensive image and symptom analysis.
+                        </p>
+                        <div class="mt-10 flex flex-wrap gap-4 animate__animated animate__fadeInUp animate__delay-2s">
+                            <a href="{{ url_for('register') }}" class="inline-flex items-center px-8 py-3 rounded-full text-base font-medium bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-200">
+                                Start Diagnosis
+                                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </a>
+                            <a href="{{ url_for('login') }}" class="inline-flex items-center px-8 py-3 rounded-full text-base font-medium border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors duration-300">
+                                Sign In
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center" data-aos="fade-left">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-blue-100 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+                            <img src="https://d35oenyzp35321.cloudfront.net/Thyroid_Disorders_dc90145abe.jpg" alt="Medical illustration" class="relative rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-blue-600 text-3xl mb-6 animate-bounce">🔬</div>
+                        <h3 class="text-xl font-semibold text-gray-900">AI-Powered Analysis</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">State-of-the-art machine learning algorithms providing accurate and reliable diagnosis results.</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-blue-600 text-3xl mb-6 animate-bounce">📊</div>
+                        <h3 class="text-xl font-semibold text-gray-900">Smart Reports</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">Comprehensive analysis with detailed insights and personalized recommendations.</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-blue-600 text-3xl mb-6 animate-bounce">🏥</div>
+                        <h3 class="text-xl font-semibold text-gray-900">Expert Support</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">Professional medical guidance and continuous support throughout your journey.</p>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="mt-24 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-12" data-aos="fade-up">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                        <div class="hover:scale-105 transition-transform duration-300">
+                            <div class="text-4xl font-bold text-blue-600">98%</div>
+                            <div class="mt-2 text-gray-600">Accuracy Rate</div>
+                        </div>
+                        <div class="hover:scale-105 transition-transform duration-300">
+                            <div class="text-4xl font-bold text-blue-600">10k+</div>
+                            <div class="mt-2 text-gray-600">Diagnoses</div>
+                        </div>
+                        <div class="hover:scale-105 transition-transform duration-300">
+                            <div class="text-4xl font-bold text-blue-600">24/7</div>
+                            <div class="mt-2 text-gray-600">Support</div>
+                        </div>
+                        <div class="hover:scale-105 transition-transform duration-300">
+                            <div class="text-4xl font-bold text-blue-600">50+</div>
+                            <div class="mt-2 text-gray-600">Expert Doctors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white/80 backdrop-blur-md mt-24">
+            <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-gray-600">
+                    © 2026 ThyroidCare. All rights reserved.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

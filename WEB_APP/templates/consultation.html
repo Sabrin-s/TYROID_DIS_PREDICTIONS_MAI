@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Consultation - ThyroidCare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                    ThyroidCare
+                </span>
+                <div class="flex items-center space-x-4">
+                    <a href="{{ url_for('index') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">🏠 Home</a>
+                    <a href="{{ url_for('chatbot') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">🤖 AI Chatbot</a>
+                    <a href="{{ url_for('patient_history') }}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">📋 My History</a>
+                    <a href="{{ url_for('logout') }}" class="text-gray-600 hover:text-red-600 transition-colors duration-300">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 py-10 animate__animated animate__fadeIn">
+
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-gray-900">🏥 Doctor Consultation</h1>
+            <p class="text-gray-500 mt-1">Book an appointment with a thyroid specialist near you</p>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="mb-6 px-4 py-3 bg-green-100 text-green-800 rounded-xl text-sm text-center">
+                    ✅ {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Doctors List -->
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Available Doctors</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {% for doctor in doctors %}
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-2xl">👨‍⚕️</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">{{ doctor.name }}</h3>
+                            <p class="text-sm text-blue-600 font-medium">{{ doctor.specialty }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 text-sm text-gray-600 mb-5">
+                    <div class="flex items-center">
+                        <span class="mr-2">🏨</span>
+                        <span>{{ doctor.hospital }}, {{ doctor.city }}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-2">🕐</span>
+                        <span>{{ doctor.available }}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-2">📧</span>
+                        <span>{{ doctor.contact }}</span>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <form action="{{ url_for('book_consultation') }}" method="POST" class="border-t pt-4 space-y-3">
+                    <input type="hidden" name="doctor_id" value="{{ doctor.id }}">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-xs text-gray-500 mb-1 block">Preferred Date</label>
+                            <input type="date" name="preferred_date" required
+                                   min="{{ '' }}"
+                                   class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500 mb-1 block">Preferred Time</label>
+                            <select name="preferred_time" required
+                                    class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Select Time</option>
+                                <option>09:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>12:00 PM</option>
+                                <option>02:00 PM</option>
+                                <option>03:00 PM</option>
+                                <option>04:00 PM</option>
+                                <option>05:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-500 mb-1 block">Notes (optional)</label>
+                        <input type="text" name="notes" placeholder="Any specific concerns..."
+                               class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <button type="submit"
+                            class="w-full py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-sm rounded-xl hover:shadow-md hover:scale-105 transition-all duration-300 font-medium">
+                        📅 Book Appointment
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- My Bookings -->
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">📌 My Bookings</h2>
+        {% if my_consultations %}
+        <div class="space-y-4">
+            {% for booking in my_consultations|reverse %}
+            <div class="bg-white/90 rounded-2xl shadow-md p-5 flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <p class="font-semibold text-gray-800">{{ booking.doctor_name }}</p>
+                    <p class="text-sm text-blue-600">{{ booking.specialty }} — {{ booking.hospital }}</p>
+                    <p class="text-xs text-gray-400 mt-1">📅 {{ booking.preferred_date }} at {{ booking.preferred_time }}</p>
+                    {% if booking.notes %}
+                    <p class="text-xs text-gray-500 mt-1">📝 {{ booking.notes }}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <span class="px-3 py-1 text-xs rounded-full font-medium
+                        {% if booking.status == 'Pending' %}bg-yellow-100 text-yellow-700
+                        {% elif booking.status == 'Confirmed' %}bg-green-100 text-green-700
+                        {% else %}bg-gray-100 text-gray-600{% endif %}">
+                        {{ booking.status }}
+                    </span>
+                    <p class="text-xs text-gray-400 mt-1 text-right">Booked: {{ booking.booking_date }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-10 bg-white/80 rounded-2xl shadow-md">
+            <div class="text-5xl mb-3">📭</div>
+            <p class="text-gray-500">No bookings yet. Book your first appointment above!</p>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

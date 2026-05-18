@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ThyroidCare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen py-12">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <!-- Back to Home Link -->
+        <a href="{{ url_for('landing') }}" class="fixed top-4 left-4 text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Back to Home
+        </a>
+
+        <!-- Registration Container -->
+        <div class="w-full max-w-2xl animate__animated animate__fadeIn">
+            <!-- Logo -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                    ThyroidCare
+                </h1>
+                <p class="mt-2 text-gray-600">Create your account to get started</p>
+            </div>
+
+            <!-- Registration Card -->
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8">
+                <form method="POST" class="space-y-6">
+                    <!-- Two Column Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <!-- Username -->
+                            <div>
+                                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                                <input type="text" id="username" name="username" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                    placeholder="Choose a username">
+                            </div>
+
+                            <!-- Password -->
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                <input type="password" id="password" name="password" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                    placeholder="Create a strong password">
+                            </div>
+
+                            <!-- Full Name -->
+                            <div>
+                                <label for="full_name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="full_name" name="full_name" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                    placeholder="Enter your full name">
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                    placeholder="Enter your email">
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                    placeholder="Enter your phone number">
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
+                            <!-- Date of Birth -->
+                            <div>
+                                <label for="dob" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                <input type="date" id="dob" name="dob" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
+                            </div>
+
+                            <!-- Gender -->
+                            <div>
+                                <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                                <select id="gender" name="gender" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
+                                    <option value="">Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Address -->
+                            <div>
+                                <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                                <textarea id="address" name="address" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 h-24 resize-none"
+                                    placeholder="Enter your address"></textarea>
+                            </div>
+
+                            <!-- Medical History -->
+                            <div>
+                                <label for="medical_history" class="block text-sm font-medium text-gray-700 mb-1">Medical History</label>
+                                <textarea id="medical_history" name="medical_history"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 h-24 resize-none"
+                                    placeholder="Please provide any relevant medical history"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms" name="terms" required
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="terms" class="ml-2 block text-sm text-gray-700">
+                            I agree to the <a href="#" class="text-blue-600 hover:text-blue-800">Terms and Conditions</a> and <a href="#" class="text-blue-600 hover:text-blue-800">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Register Button -->
+                    <button type="submit"
+                        class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+
+            <!-- Login Link -->
+            <p class="mt-8 text-center text-gray-600">
+                Already have an account? 
+                <a href="{{ url_for('login') }}" class="font-medium text-blue-600 hover:text-blue-800 transition-colors duration-300">
+                    Sign in here
+                </a>
+            </p>
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="fixed bottom-4 right-4 animate__animated animate__fadeInUp">
+                {% for message in messages %}
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg shadow-lg">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
