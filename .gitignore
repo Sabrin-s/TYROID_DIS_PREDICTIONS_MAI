@@ -2,3 +2,4 @@ WEB_APP/venv/
 __pycache__/ 
 *.pyc 
 .ipynb_checkpoints/ 
+WEB_APP/multimodal_model.pth 
