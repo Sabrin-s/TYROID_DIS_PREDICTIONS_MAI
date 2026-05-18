@@ -45,4 +45,48 @@ by combining:
 
 ---
 
-## 🏗️ System Architecture
+---
+
+## 📊 Model Performance
+
+| Model | Accuracy | Precision | Recall | F1-Score |
+|-------|----------|-----------|--------|----------|
+| XGBoost | 85.7% | 84.2% | 83.5% | 83.8% |
+| CNN | 90.2% | 89.5% | 90.0% | 89.7% |
+| DNN | 88.3% | 87.1% | 86.5% | 86.8% |
+| **DMMSCN (Ours)** | **96.5%** | **95.8%** | **96.0%** | **95.9%** |
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | HTML5, CSS3, TailwindCSS |
+| Backend | Python, Flask |
+| ML Models | XGBoost, ResNet-18, BERT |
+| Deep Learning | PyTorch |
+| Database | JSON-based |
+
+---
+
+## ⚙️ How to Run
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Sabrin-s/TYROID_DIS_PREDICTIONS_MAI.git
+cd TYROID_DIS_PREDICTIONS_MAI
+```
+
+### 2. Install dependencies
+```bash
+cd WEB_APP
+pip install -r requirements.txt
+```
+
+### 3. Run the app
+```bash
+python app.py
+```
+
+### 4. Open in browser
