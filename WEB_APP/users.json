@@ -289,5 +289,140 @@
             }
         ],
         "consultations": []
+    },
+    "reyais": {
+        "password": "scrypt:32768:8:1$nrwaoK2qk27eUv3O$65a55a1cda1628a095e9282b8bc0abd1603f9daffe70d2fd3521d4610c8ce2e5ca1a7a455d2273efcc0c3886ba3c2ecf770773f94006026d5e4006d62967e53c",
+        "full_name": "reyais",
+        "email": "reyais@gmail.com",
+        "phone": "6380903181",
+        "dob": "2000-01-30",
+        "gender": "male",
+        "address": "xxxx",
+        "medical_history": "fever",
+        "history": [],
+        "consultations": []
+    },
+    "ram": {
+        "password": "scrypt:32768:8:1$jdxHt5b2GFGae8wb$b3e810588b04a849ac1df459a5565b49fc579597699af3bbcb4d5c3218d501e2eca7308d2e5fb04517d056848585da428f2ea3ab5a6b162366dea553134174c6",
+        "full_name": "ram ",
+        "email": "ram@gmail.com",
+        "phone": "8686152148",
+        "dob": "2026-05-05",
+        "gender": "male",
+        "address": "llll",
+        "medical_history": "fever,cough",
+        "history": [
+            {
+                "date": "2026-05-18 21:10:40",
+                "symptoms": "mild weight fluctuation, sensitivity to cold, mild joint pain, constipation, weight gain, dry skin, slight neck discomfort, mild anxiety, occasional dizziness, hair loss, irregular menstrual cycles, mild swelling in neck, enlarged thyroid, cold intolerance, mild memory loss, mild depression, bradycardia, mild fatigue, skin roughness, muscle stiffness",
+                "prediction_text": "benign",
+                "prediction_image": "malignant",
+                "prediction_both": "benign"
+            },
+            {
+                "date": "2026-05-18 22:07:03",
+                "symptoms": "fever",
+                "prediction_text": "benign",
+                "prediction_image": "malignant",
+                "prediction_both": "benign"
+            },
+            {
+                "date": "2026-05-18 23:04:14",
+                "symptoms": "fever,cough ",
+                "prediction_text": "benign",
+                "prediction_image": "benign",
+                "prediction_both": "benign"
+            },
+            {
+                "date": "2026-05-31 18:45:14",
+                "symptoms": "frvrer",
+                "prediction_text": "benign",
+                "prediction_image": "benign",
+                "prediction_both": "benign"
+            },
+            {
+                "date": "2026-06-01 14:12:30",
+                "symptoms": "rapid heartbeat, ear pain, shortness of breath, fever, chest pain, persistent pain in throat, chronic cough, persistent cough, difficulty breathing, rapid thyroid growth, voice changes, severe neck pain, neck mass, difficulty swallowing, dysphagia, hoarseness, lymph node involvement",
+                "prediction_text": "malignant",
+                "prediction_image": "malignant",
+                "prediction_both": "malignant"
+            },
+            {
+                "date": "2026-06-01 14:25:45",
+                "symptoms": "rapid heartbeat, ear pain, shortness of breath, fever, chest pain, persistent pain in throat, chronic cough, persistent cough, difficulty breathing, rapid thyroid growth, voice changes, severe neck pain, neck mass, difficulty swallowing, dysphagia, hoarseness, lymph node involvement",
+                "prediction_text": "malignant",
+                "prediction_image": "malignant",
+                "prediction_both": "malignant"
+            },
+            {
+                "date": "2026-06-05 20:22:49",
+                "symptoms": "hair loss, mild joint pain, cold intolerance, mild fatigue, enlarged thyroid, sensitivity to cold, irregular menstrual cycles",
+                "prediction_text": "benign",
+                "prediction_image": "malignant",
+                "prediction_both": "benign"
+            },
+            {
+                "date": "2026-06-23 19:11:30",
+                "symptoms": "neck mass, shortness of breath, rapid thyroid growth, fever",
+                "prediction_text": "malignant",
+                "prediction_image": "malignant",
+                "prediction_both": "malignant"
+            },
+            {
+                "date": "2026-07-11 08:58:00",
+                "symptoms": "weight changes",
+                "prediction_text": "benign",
+                "prediction_image": "benign",
+                "prediction_both": "benign"
+            },
+            {
+                "date": "2026-08-12 14:27:41",
+                "symptoms": "throat pain ,drinking problems, ",
+                "prediction_text": "benign",
+                "prediction_image": "benign",
+                "prediction_both": "benign"
+            }
+        ],
+        "consultations": []
+    },
+    "sp": {
+        "password": "scrypt:32768:8:1$Ey8iTACuiLpGWS1Q$38e8fa61da3eb6d6b153ec142727b6536c36e38e038ee94a42e201d9ccbd38ab7c6a48ff0e2803a663c8cc7a2830533dfc53d9b579d81ef5e1af21f70a916072",
+        "full_name": "Prasath ",
+        "email": "sp123@gmail.com",
+        "phone": "6380903181",
+        "dob": "2005-07-28",
+        "gender": "male",
+        "address": "6/214 ksr nagar\r\nujanai",
+        "medical_history": "fever",
+        "history": [
+            {
+                "date": "2026-06-01 13:57:13",
+                "symptoms": "mild weight fluctuation, sensitivity to cold, mild joint pain, constipation, weight gain, dry skin, slight neck discomfort, mild anxiety, occasional dizziness, hair loss, irregular menstrual cycles, mild swelling in neck, enlarged thyroid, cold intolerance, mild memory loss, mild depression, bradycardia, mild fatigue, skin roughness, muscle stiffness",
+                "prediction_text": "benign",
+                "prediction_image": "malignant",
+                "prediction_both": "benign"
+            }
+        ],
+        "consultations": []
+    },
+    "raju": {
+        "password": "scrypt:32768:8:1$LrUb22olbTxjN4HR$83603010e2e3ad0c5b3ccf429de8969b8cc6d6c214d8abb266e0953347cda5da0f0763de42577ce6a1d6afcd8035c706e61f45fb8de29e6f4c33d38d706e6a2a",
+        "full_name": "Raju S",
+        "email": "raju004@gmail.com",
+        "phone": "638090524",
+        "dob": "2004-08-12",
+        "gender": "female",
+        "address": "6/214 Ujanai Namakkal",
+        "medical_history": "cough,weiht changes,fever,throat pain",
+        "history": [
+            {
+                "date": "2026-07-11 09:07:06",
+                "symptoms": "changes in heart rate ",
+                "prediction_text": "benign",
+                "prediction_image": "benign",
+                "prediction_both": "benign"
+            }
+        ],
+        "consultations": []
     }
 }

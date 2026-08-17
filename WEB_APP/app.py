@@ -19,7 +19,7 @@ from werkzeug.utils import secure_filename
 # ─────────────────────────────────────────────
 
 app = Flask(__name__)
-app.secret_key = "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"
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "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")
 
 UPLOAD_FOLDER = "static/uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -774,8 +774,10 @@ def book_consultation():
 # ─────────────────────────────────────────────
 
 if __name__ == "__main__":
-
+    port = int(os.environ.get("PORT", 7860))
     app.run(
-        debug=True,
+        host="0.0.0.0",
+        port=port,
+        debug=False,
         use_reloader=False
     )
