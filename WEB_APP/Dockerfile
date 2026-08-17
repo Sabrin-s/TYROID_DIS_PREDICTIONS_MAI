@@ -26,4 +26,4 @@ EXPOSE 7860
 
 # Command to run the application using Gunicorn
 # Using 1 worker and multiple threads due to high memory usage of PyTorch
-CMD ["gunicorn", "--bind", "0.0.0.0:7860", "--workers", "1", "--threads", "8", "--timeout", "0", "app:app"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-7860} --workers 1 --threads 4 --timeout 120 app:app"]
